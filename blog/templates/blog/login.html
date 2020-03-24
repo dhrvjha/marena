@@ -1,0 +1,38 @@
+{% extends 'blog/sign_base.html' %}
+{% block sign_content %}
+<style media="screen">
+.legend_login{
+	top: 0%;
+	left: 30%;
+	position: relative;
+}
+.login-form
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 400px;
+	padding: 60px 40px;
+/*	background: rgba(255,255,255,1);*/
+	background: #cccccc;
+	box-shadow: 0 15px 2-px rgba(0,0,0,.2);
+	border: 1px solid rgba(0,0,0,.125);
+	border-radius: .25rem;
+}
+</style>
+		<div class="login-form">
+			<legend class = "legend_login">Marena</legend>
+			<form>
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">Email address</label>
+			    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+			  </div>
+			  <div class="form-group">
+			    <label for="exampleInputPassword1">Password</label>
+			    <input type="password" class="form-control" id="exampleInputPassword1">
+			  </div>
+			  <button type="submit" class="btn btn-primary">Sign In</button>
+			</form>
+		</div>
+{% endblock sign_content %}
