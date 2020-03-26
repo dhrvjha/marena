@@ -11,6 +11,13 @@
 
         </div>
         <div class="col-lg-5">
+        {% if messages %}
+          {% for message in messages %}
+            <div class='alert alert-{{ message.tags }}'>
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
         {% for post in posts %}
           <div class="card" style="width: 35rem;">
             <div class="card-body">

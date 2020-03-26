@@ -7,7 +7,7 @@ from django.db import models
 
 class posts(models.Model):
     title = models.CharField(max_length=50)
-    date_posted = models.DateTimeField('date published')
+    date_posted = models.DateTimeField(auto_now_add=True)
     post_text = models.CharField(max_length=300)
     like = models.IntegerField(default=0)
     comment = models.CharField(null=True, max_length=200,blank=True)

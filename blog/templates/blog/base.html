@@ -11,7 +11,7 @@
   <body>
     <div>
       <nav class="navbar navbar-light navbar-expand-lg navbar-expand-md bg-light">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href={% url 'blog-home' %}>
           Marena
         </a>
         <div class="collapse navbar-collapse">
@@ -22,9 +22,53 @@
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </li>
-          <li class="nav-item mr-2"><a href="#"><button type="submit" class="btn btn-outline-info">home</button></a></li>
+          <li class="nav-item mr-2"><a href={% url 'blog-home' %}><button type="submit" class="btn btn-outline-info">home</button></a></li>
           <li class="nav-item mr-2"><a href="#"><button type="submit" class="btn btn-outline-info">messages</button></a></li>
-          <li class="nav-item"><a href="#"><button type="submit" class="btn btn-outline-info">profile</button></a></li>
+          {% if user.is_authenticated %}
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <svg class="bi bi-person-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                </svg>
+                <span class="caret"></span>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href={% url 'profile' %}>Profile</a>
+                <a class="dropdown-item" href={% url 'settings' %}>Settings</a>
+                <div class="dropdown-divider"></div>
+                <button class="btn" type='button' data-toggle='modal' data-target='#exampleModalCenterTitle'>
+                Logout
+                <svg class="bi bi-box-arrow-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M4.354 11.354a.5.5 0 000-.708L1.707 8l2.647-2.646a.5.5 0 10-.708-.708l-3 3a.5.5 0 000 .708l3 3a.5.5 0 00.708 0z" clip-rule="evenodd"/>
+                  <path fill-rule="evenodd" d="M11.5 8a.5.5 0 00-.5-.5H2a.5.5 0 000 1h9a.5.5 0 00.5-.5z" clip-rule="evenodd"/>
+                  <path fill-rule="evenodd" d="M14 13.5a1.5 1.5 0 001.5-1.5V4A1.5 1.5 0 0014 2.5H7A1.5 1.5 0 005.5 4v1.5a.5.5 0 001 0V4a.5.5 0 01.5-.5h7a.5.5 0 01.5.5v8a.5.5 0 01-.5.5H7a.5.5 0 01-.5-.5v-1.5a.5.5 0 00-1 0V12A1.5 1.5 0 007 13.5h7z" clip-rule="evenodd"/>
+                </svg>
+                </button>
+                
+                <div class="modal fade" id="exampleModalCenterTitle" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Are you sure to logout</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        you will not be able to use certain features after logout
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary"><a href={% url 'logout' %}>Sure</a></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% else %}
+            <li class="nav-item"><a href={% url 'login' %}><button type="submit" class="btn btn-outline-info">Login</button></a></li>
+          {% endif %}
         </ul>
         </div>
       </nav>

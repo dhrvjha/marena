@@ -8,9 +8,3 @@ content = {
  }
 def home(request):
     return render(request, "blog/home.html", content)
-
-def login(request):
-    return render(request, "blog/login.html")
-
-def register(request):
-    return render(request, "blog/register.html")
