@@ -1,0 +1,23 @@
+
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div class='container'>
+        <div class='row'>
+            <div class='col-lg-2'></div>
+            <div class='col-lg-8'>
+                <div class='card'>
+                    <div class='container'>
+                        <div class='row'>
+                            <div class='col-lg-4'>
+                                {% comment %} <img height=540 width=320 class='rounded-circle account-img' src={{ request.user.profile.profile_image.url }}> {% endcomment %}
+                            </div>
+                            <div class='col-lg-7'>
+                                <h1>{{request.user.username}}</h1><small>{{request.user.email}}</small>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock content %}

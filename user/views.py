@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UserRegistraionForm
+from .forms import UserRegistraionForm, UserUpdateForm, ProfileUpdateForm
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
 # Create your views here.
-def login(request):
-    return render(request, "user/login.html")
 
 def register(request):
     if request.method == 'POST':
@@ -19,8 +20,12 @@ def register(request):
         form = UserRegistraionForm()
     return render(request, "user/register.html", {'form' : form})
 
+@login_required
 def profile(request):
-    return HttpResponse('<h4>Profile page not ready</h4>')
+    return render(request, 'user/profile.html', {
+        # 'User': request.User
+        })
 
+@login_required
 def settings(request):
     return HttpResponse('<h4>Settings page not ready</h4>')
