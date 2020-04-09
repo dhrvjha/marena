@@ -1,5 +1,6 @@
 import datetime
 from django.utils import timezone
+from django.urls import reverse
 from django.db import models
 
 
@@ -18,4 +19,7 @@ class posts(models.Model):
 
     def was_publilsed_recently(self):
         return self.date_posted >= timezone.now() - datetime.timedelta(days = 1)
+    
+    def get_absolute_url(self):
+        return reverse("post-detail", kwargs={"pk": self.pk})
     

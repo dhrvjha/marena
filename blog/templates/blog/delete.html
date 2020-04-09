@@ -1,0 +1,47 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <style media="screen">
+      .col-lg-5{
+        padding-left : 0
+      }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2" >
+
+            </div>
+            <div class="col-lg-5">
+            
+                {% comment %} {% if messages %}
+                {% for message in messages %}
+                    <div class='alert alert-{{ message.tags }}'>
+                    {{ message }}
+                    </div>
+                {% endfor %}
+                {% endif %} {% endcomment %}
+
+            <div class="card" style="width: 35rem;">
+                <div class="card-body">
+                <p class="card-text">Are you sure you want to delete the post</p>
+                <p class="card-title">{{ posts.title }}</p>
+                <table class="ml-auto">
+                <tbody>
+                <tr>
+                    <td class="align-baseline"><a href={% url 'post-detail' posts.id%} class="card-link btn btn-outline-primary" role='button' > Cancel </a><td>
+                {% comment %} </tr>
+                <tr> {% endcomment %}
+                    <td class="align-text-bottom">
+                    {% if request.user.username == posts.author %}
+                        <form method='post'>
+                            {% csrf_token %}
+                            <button class="btn btn-danger" style="color: #ffffff !important;" type='submit'>Yes, I'm</button>
+                        </form>
+                    {% endif %}
+                    </td>
+                </tr>
+                </tbody>
+                </table>                
+            </div>
+        </div>
+    </div>
+{% endblock content %}

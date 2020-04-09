@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <style media="screen">
+      .col-lg-5{
+        padding-left : 0
+      }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2" >
+
+            </div>
+            <div class="col-lg-5">
+            
+                {% comment %} {% if messages %}
+                {% for message in messages %}
+                    <div class='alert alert-{{ message.tags }}'>
+                    {{ message }}
+                    </div>
+                {% endfor %}
+                {% endif %} {% endcomment %}
+
+            <div class="card" style="width: 35rem;">
+                <div class="card-body">
+                <h5 class="card-title">{{ posts.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ posts.date_posted}}</h6>
+                <p class="card-text">{{ posts.post_text }}</p>
+                <a href="#" class="card-link">{{ posts.author }}</a>
+                <a href="#" class="card-link"> comment </a>
+                {% if posts.author == request.user.username %}
+                 <a href={% url 'post-update' posts.id%} class="card-link"> update </a>
+                 <a href={% url 'post-delete' posts.id%} class="card-link"style="color:red!important;"> delete </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
