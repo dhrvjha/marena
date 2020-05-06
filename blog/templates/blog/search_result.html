@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-    <style media="screen">
+   <style media="screen">
       .col-lg-5{
         padding-left : 0
       }
@@ -11,13 +11,9 @@
         text-transform: uppercase;
         margin-top: 2rem;
       }
-      .post-btn
       .card{
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
-      }
-      .post-btn:hover{
-        text-decoration: none !important;
       }
     </style>
     <div class="container">
@@ -30,13 +26,6 @@
           </button>
         </div>
         <div class="col-lg-5">
-        {% if messages %}
-          {% for message in messages %}
-            <div class='alert alert-{{ message.tags }}'>
-              {{ message }}
-            </div>
-          {% endfor %}
-        {% endif %}
         {% for post in posts %}
           <div class="card" style="width: 35rem;">
             <div class="card-body">
@@ -51,6 +40,6 @@
         {% endfor %}
         </div>
       </div>
+    </div> 
 
-    </div>
 {% endblock content %}

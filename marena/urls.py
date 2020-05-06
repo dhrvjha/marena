@@ -24,7 +24,9 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('',include('user.urls')),
     path('login/',auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),
-    path('logout/',auth_views.LogoutView.as_view(), name='logout')
+    path('logout/',auth_views.LogoutView.as_view(), name='logout'),
+    path('password-reset/', auth_views.PasswordResetView.as_view(template_name='user/password_reset.html'), name='password_reset')
+    
 ]
 
 if settings.DEBUG:

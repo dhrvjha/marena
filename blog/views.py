@@ -12,6 +12,11 @@ from .models import posts
 
 # Create your views here.
 
+def searchView(request):
+    full_path = request.get_full_path_info()
+    full_path, query_string = full_path.split('=')
+    return render(request, 'blog/search_result.html', { 'posts' : posts.objects.filter(title__startswith = query_string).order_by('-date_posted') })
+
 class PostListView(ListView):
     model = posts
     template_name = 'blog/home.html'
